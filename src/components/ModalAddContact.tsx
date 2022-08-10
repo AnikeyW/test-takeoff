@@ -1,4 +1,4 @@
-import { Input, Modal } from 'antd';
+import { Button, Form, Input, Modal } from 'antd';
 import React, { FC, useState } from 'react';
 import { addContact } from '../actions/actionCreators';
 import { useAppDispatch } from '../hooks/redux';
@@ -12,14 +12,7 @@ const ModalAddContact: FC<ModalAddContactProps> = ({ isAddModalVisible, setIsAdd
    const dispatch = useAppDispatch()
    const [name, setName] = useState("");
    const [lastname, setLastName] = useState("");
-
-
-   const handleOk = () => {
-      setIsAddModalVisible(false);
-      dispatch(addContact({ name, lastname }))
-      setName("")
-      setLastName("")
-   };
+   const [form] = Form.useForm();
 
    const handleCancel = () => {
       setIsAddModalVisible(false);
@@ -35,10 +28,56 @@ const ModalAddContact: FC<ModalAddContactProps> = ({ isAddModalVisible, setIsAdd
       setLastName(e.target.value);
    };
 
+   const onFinish = () => {
+      dispatch(addContact({ name, lastname }))
+      setName("")
+      setLastName("")
+      setIsAddModalVisible(false);
+      form.resetFields();
+   };
+
    return (
-      <Modal title="Добавить новый контакт" visible={isAddModalVisible} onOk={handleOk} onCancel={handleCancel}>
-         <Input placeholder="Имя" value={name} onChange={changeNameHandler} />
-         <Input placeholder="Фамилия" value={lastname} onChange={changeLastnameHandler} />
+      <Modal
+         title="Добавить новый контакт"
+         visible={isAddModalVisible}
+         footer={null}
+         onCancel={handleCancel}
+      >
+         <Form
+            form={form}
+            name="addContact"
+            onFinish={onFinish}
+         >
+            <Form.Item
+               name="contactname"
+               rules={[{ required: true, message: 'Введите имя контакта!' }]}
+            >
+               <Input placeholder="Имя" value={name} onChange={changeNameHandler} />
+            </Form.Item>
+
+            <Form.Item
+               name="contactlastname"
+               rules={[{ required: true, message: 'Введите фамилию контакта!' }]}
+            >
+               <Input placeholder="Фамилия" value={lastname} onChange={changeLastnameHandler} />
+            </Form.Item>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+
+               <Form.Item style={{ display: 'inline-block' }}>
+                  <Button type="ghost" onClick={handleCancel}>
+                     Отмена
+                  </Button>
+               </Form.Item>
+
+               <Form.Item style={{ display: 'inline-block', marginLeft: '5px' }}>
+                  <Button type="primary" htmlType="submit" >
+                     Ок
+                  </Button>
+               </Form.Item>
+            </div>
+
+         </Form>
       </Modal>
    );
 };
