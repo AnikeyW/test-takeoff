@@ -1,8 +1,20 @@
 {
   "contacts": [
     {
-      "name": "Вася",
-      "lastname": "Петров",
+      "id": 1,
+      "name": "Вася ",
+      "lastname": "Петров"
+    },
+    {
+      "id": 2,
+      "name": "Егор",
+      "lastname": "Аникеев332"
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@admin.com",
+      "password": "1",
       "id": 1
     }
   ]

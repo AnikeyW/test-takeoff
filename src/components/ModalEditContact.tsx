@@ -4,13 +4,13 @@ import { fetchEditContact } from '../actions/actionCreators';
 import { useAppDispatch } from '../hooks/redux';
 import { IContact } from '../models/contact';
 
-interface ModalEditContact {
+interface ModalEditContactProps {
    isModalEditVisible: boolean;
    setIsModalEditVisible: (isModalVisible: boolean) => void;
    editContact: IContact;
 }
 
-const ModalEditContact: FC<ModalEditContact> = ({ isModalEditVisible, setIsModalEditVisible, editContact }) => {
+const ModalEditContact: FC<ModalEditContactProps> = ({ isModalEditVisible, setIsModalEditVisible, editContact }) => {
    const dispatch = useAppDispatch()
    const [name, setName] = useState<string>("");
    const [lastname, setLastName] = useState<string>("");
@@ -43,7 +43,7 @@ const ModalEditContact: FC<ModalEditContact> = ({ isModalEditVisible, setIsModal
 
    return (
       <Modal title="Редактировать контакт" visible={isModalEditVisible} onOk={handleOk} onCancel={handleCancel}>
-         <Input placeholder="Имя" value={name} onChange={changeNameHandler} />
+         <Input placeholder="Имя" value={name} onChange={changeNameHandler} style={{ margin: '5px 0' }} />
          <Input placeholder="Фамилия" value={lastname} onChange={changeLastnameHandler} />
       </Modal>
    );

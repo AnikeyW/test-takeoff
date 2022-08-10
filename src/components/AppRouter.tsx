@@ -17,7 +17,8 @@ const AppRouter: FC = () => {
    return (
       <Routes>
          {isAuth && <Route path='/' element={<Contacts />} />}
-         <Route path='/login' element={<Login />} />
+         {!isAuth && <Route path='/login' element={<Login />} />}
+         {/* <Route path='/login' element={<Login />} /> */}
          <Route path='*' element={<Login />} />
       </Routes>
    );

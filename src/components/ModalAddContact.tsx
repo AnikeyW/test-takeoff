@@ -10,8 +10,8 @@ interface ModalAddContactProps {
 
 const ModalAddContact: FC<ModalAddContactProps> = ({ isAddModalVisible, setIsAddModalVisible }) => {
    const dispatch = useAppDispatch()
-   const [name, setName] = useState("");
-   const [lastname, setLastName] = useState("");
+   const [name, setName] = useState<string>("");
+   const [lastname, setLastName] = useState<string>("");
    const [form] = Form.useForm();
 
    const handleCancel = () => {

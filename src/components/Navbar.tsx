@@ -1,32 +1,41 @@
+import { Col, Menu, Row } from 'antd';
+import { Header } from 'antd/lib/layout/layout';
 import React, { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { RouteNames } from '../routes';
 import { authSlice } from '../store/reducers/authSlice';
-import './Navbar.css'
+import { loginSlice } from '../store/reducers/loginSlice';
 
 const Navbar: FC = () => {
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
    const isAuth = useAppSelector(state => state.authSlice.isAuth)
+   const userEmail = useAppSelector(state => state.loginSlice.userEmail)
 
    const logoutHandler = () => {
+      dispatch(loginSlice.actions.setUserSuccess(""))
       dispatch(authSlice.actions.setIsAuth(false))
       navigate('/login')
    }
    return (
-      <div className="navbar">
-         {isAuth ?
-            <>
-               <div>Имя пользоваьтеля</div>
-               <button onClick={logoutHandler}>выйти</button>
-            </>
-            :
-            <>
-               <Link to={RouteNames.LOGIN} >Login</Link>
-            </>
-         }
-      </div>
+      <Header>
+         <Row justify='center'>
+            <Col span={20}>
+               <Row justify='end'>
+                  <Menu theme='dark' mode='horizontal' selectable={false}>
+                     {isAuth &&
+                        <>
+                           <Menu.Item>{userEmail}</Menu.Item>
+                           <Menu.Item onClick={logoutHandler}>
+                              выйти
+                           </Menu.Item>
+                        </>
+                     }
+                  </Menu>
+               </Row>
+            </Col>
+         </Row>
+      </Header>
    );
 };
 
