@@ -13,6 +13,8 @@ const Login: FC = () => {
    return (
       <div>
          login
+         <div><input type="text" placeholder='Email' /></div>
+         <div><input type="password" placeholder='Введите пароль' /></div>
          <button onClick={loginHandler}>Войти</button>
       </div>
    );
