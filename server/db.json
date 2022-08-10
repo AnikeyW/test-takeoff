@@ -16,6 +16,11 @@
       "email": "admin@admin.com",
       "password": "1",
       "id": 1
+    },
+    {
+      "email": "1@1.aa",
+      "password": "1",
+      "id": 2
     }
   ]
 }

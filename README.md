@@ -1,3 +1,12 @@
+# Необходимая версия Nodejs
+
+v16.16.0
+
+# Запуск приложения:
+Установите зависимости введя команду 'npm i' в терминал,
+Далее введите команду 'npm run server' в терминал для запуска локального сервера,
+Откройте еще один терминал и введите команду 'npm start' для запуска реакта
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -18,6 +18,7 @@ const ModalAddContact: FC<ModalAddContactProps> = ({ isAddModalVisible, setIsAdd
       setIsAddModalVisible(false);
       setName("")
       setLastName("")
+      form.resetFields();
    };
 
    const changeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

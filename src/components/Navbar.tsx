@@ -1,4 +1,4 @@
-import { Col, Menu, Row } from 'antd';
+import { Button, Col, Menu, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,22 +19,21 @@ const Navbar: FC = () => {
    }
    return (
       <Header>
-         <Row justify='center'>
-            <Col span={20}>
-               <Row justify='end'>
-                  <Menu theme='dark' mode='horizontal' selectable={false}>
-                     {isAuth &&
-                        <>
-                           <Menu.Item>{userEmail}</Menu.Item>
-                           <Menu.Item onClick={logoutHandler}>
-                              выйти
-                           </Menu.Item>
-                        </>
-                     }
-                  </Menu>
-               </Row>
-            </Col>
-         </Row>
+         <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+            <div style={{
+               display: 'flex',
+               justifyContent: 'flex-end',
+               maxWidth: '1200px', width: '100%', height: '100%'
+            }}>
+               {isAuth &&
+                  <div style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
+                     <div style={{ color: '#fff', fontSize: '24px', marginRight: '5px' }}>{userEmail}</div>
+                     <Button onClick={logoutHandler} type="primary">Выйти</Button>
+                  </div>
+
+               }
+            </div>
+         </div>
       </Header>
    );
 };
